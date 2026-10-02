@@ -1,0 +1,127 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Tété Dwèt design system — "Bold Caribbean Pop"
+ * Warm cream canvas, ink outlines, hard offset shadows, saturated tropical colors.
+ * Fonts: Archivo (display, black uppercase) + DM Sans (body).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sun: var(--sun);
+  --color-mango: var(--mango);
+  --color-hibiscus: var(--hibiscus);
+  --color-leaf: var(--leaf);
+  --color-sea: var(--sea);
+  --color-cream: var(--cream);
+  --color-plum: var(--plum);
+  --color-ink: var(--ink);
+  --font-display: "Archivo", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+  --sun: oklch(0.868 0.169 93.5);
+  --mango: oklch(0.705 0.191 47.6);
+  --hibiscus: oklch(0.623 0.237 14.6);
+  --leaf: oklch(0.585 0.155 152.5);
+  --sea: oklch(0.582 0.153 247.5);
+  --cream: oklch(0.972 0.018 92);
+  --plum: oklch(0.352 0.157 303.5);
+  --ink: oklch(0.196 0.017 62);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: var(--cream);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--hibiscus);
+  --primary-foreground: var(--cream);
+  --secondary: var(--sun);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.94 0.02 90);
+  --muted-foreground: oklch(0.42 0.03 60);
+  --accent: var(--sun);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--cream);
+  --border: var(--ink);
+  --input: var(--ink);
+  --ring: var(--hibiscus);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@utility shadow-pop {
+  box-shadow: 4px 4px 0 0 var(--ink);
+}
+
+@utility shadow-pop-lg {
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+@utility shadow-pop-sm {
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+
+@utility btn-pop {
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 0 var(--ink);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 0 var(--ink);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 2px 2px 0 0 var(--ink);
+  }
+}
