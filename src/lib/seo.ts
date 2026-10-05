@@ -6,6 +6,7 @@ import type { SiteData } from "@/lib/cms/api";
 import type { Media, Meta, Rel } from "@/lib/cms/types";
 import { isPopulated } from "@/lib/cms/types";
 import type { Alternates, Lang } from "@/lib/paths";
+import { internationalPhone } from "@/lib/site";
 
 type Matches = { routeId: string; loaderData?: unknown }[];
 
@@ -88,7 +89,7 @@ export function localBusinessLd(site: SiteData): Record<string, unknown> {
     ...(s?.tagline ? { description: s.tagline } : {}),
     ...(imageUrl(s?.defaultImage) ? { image: imageUrl(s?.defaultImage) } : {}),
     ...(s?.contact?.email ? { email: s.contact.email } : {}),
-    ...(s?.contact?.phone ? { telephone: s.contact.phone } : {}),
+    ...(s?.contact?.phone ? { telephone: internationalPhone(s.contact.phone) } : {}),
     address: {
       "@type": "PostalAddress",
       ...(s?.contact?.address ? { streetAddress: s.contact.address } : {}),

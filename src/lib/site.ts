@@ -74,6 +74,15 @@ export const linkHref = (
   return link.url ? localizeHref(link.url, lang) : null;
 };
 
+/**
+ * Numéro au format international pour les liens d'appel et Schema.org :
+ * « 06 58 65 09 93 » → « +33658650993 » (les visiteurs étrangers peuvent appeler).
+ */
+export const internationalPhone = (phone: string) => {
+  const digits = phone.replace(/[^\d+]/g, "");
+  return /^0\d{9}$/.test(digits) ? `+33${digits.slice(1)}` : digits;
+};
+
 export const formatPrice = (value: number, locale: string) =>
   new Intl.NumberFormat(locale, {
     style: "currency",

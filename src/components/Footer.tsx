@@ -1,7 +1,7 @@
 import { SiteLink } from "@/components/SiteLink";
 import { useLang } from "@/lib/i18n";
 import { sectionPath } from "@/lib/paths";
-import { useSite } from "@/lib/site";
+import { internationalPhone, useSite } from "@/lib/site";
 
 const SOCIAL_NAMES: Record<string, string> = {
   instagram: "Instagram",
@@ -48,7 +48,7 @@ export function Footer() {
               {contact.email}
             </a>
           )}
-          {contact?.phone && <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}>{contact.phone}</a>}
+          {contact?.phone && <a href={`tel:${internationalPhone(contact.phone)}`}>{contact.phone}</a>}
         </address>
         {!!settings?.socials?.length && (
           <nav aria-label={t.footer.follow} className="flex flex-wrap justify-center gap-3">

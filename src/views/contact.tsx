@@ -5,7 +5,7 @@ import type { Form } from "@/lib/cms/types";
 import { getDict, useLang } from "@/lib/i18n";
 import { sectionAlternates, type Lang } from "@/lib/paths";
 import { buildHead, siteFrom } from "@/lib/seo";
-import { useSection, useSite } from "@/lib/site";
+import { internationalPhone, useSection, useSite } from "@/lib/site";
 
 type Matches = Parameters<typeof siteFrom>[0];
 type Search = { objet?: string };
@@ -52,7 +52,7 @@ export function ContactView({ form, prefill }: { form: Form | null; prefill: str
             </a>
           )}
           {contact?.phone && (
-            <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`} className={`${cardCls} bg-sea text-cream`}>
+            <a href={`tel:${internationalPhone(contact.phone)}`} className={`${cardCls} bg-sea text-cream`}>
               {contact.phone}
             </a>
           )}
