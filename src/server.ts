@@ -1,6 +1,7 @@
 import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
+import { findRedirect } from "./lib/cms/redirects.server";
 import { renderErrorPage } from "./lib/error-page";
 
 type ServerEntry = {
@@ -44,9 +45,38 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+/** Fichiers, fonctions serveur et ressources techniques : pas de redirection. */
+const isTechnicalPath = (pathname: string) =>
+  pathname.startsWith("/_") || pathname.startsWith("/@") || /\.[a-z0-9]{2,5}$/i.test(pathname);
+
+/**
+ * Avant le rendu : redirections de l'admin (anciennes adresses), puis slash final
+ * obligatoire (toutes les adresses du site finissent par /, comme sur l'ancien site).
+ */
+async function redirectFor(request: Request): Promise<Response | null> {
+  if (request.method !== "GET" && request.method !== "HEAD") return null;
+  const url = new URL(request.url);
+  if (isTechnicalPath(url.pathname)) return null;
+  try {
+    const redirect = await findRedirect(url.pathname);
+    if (redirect) {
+      return Response.redirect(new URL(redirect.target + url.search, url), redirect.status);
+    }
+  } catch (error) {
+    // Admin injoignable : on continue sans redirection plutôt que de bloquer le site.
+    console.error(error);
+  }
+  if (!url.pathname.endsWith("/")) {
+    return Response.redirect(new URL(`${url.pathname}/${url.search}`, url), 301);
+  }
+  return null;
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const redirect = await redirectFor(request);
+      if (redirect) return redirect;
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);

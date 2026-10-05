@@ -1,29 +1,49 @@
-# Welcome to your Lovable project
+# Tété Dwèt — site public (tetedwet.com)
 
-This project was built with [Lovable](https://lovable.dev).
+Site de Tété Dwèt (food tours et expériences culinaires en Martinique), conçu avec Lovable
+(design « Bold Caribbean Pop ») et alimenté par l'admin commun Majorine / Tété Dwèt
+(Payload CMS, dépôt `lrastocle/mjr-admin`, dossier `admin/`).
 
-## Build with Lovable
+## Stack
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+TanStack Start (rendu serveur) · React · Tailwind CSS · shadcn/ui.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Contenus
 
-## Development
+Tout le contenu vient de l'admin : pages composées de blocs (accueil, qui sommes-nous…),
+blog (articles, catégories, étiquettes), expériences, boutique, équipe, presse, formulaire de
+contact, coordonnées et textes des rubriques. Une publication dans l'admin apparaît sur le
+site au plus tard après `CMS_CACHE_SECONDS` (60 s).
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+| Adresse (FR) | Adresse (EN) | Contenu |
+|---|---|---|
+| `/` | `/en/` | Page d'accueil choisie dans les réglages du site |
+| `/<slug>/` | `/en/<slug>/` | Page ou article (mêmes adresses que l'ancien WordPress) |
+| `/blog/`, `/category/<slug>/`, `/tag/<slug>/` | idem sous `/en/` | Listes d'articles (`?page=2`) |
+| `/visites/`, `/visites/<slug>/` | `/en/tours/…` | Expériences (réservation FareHarbor ou demande) |
+| `/boutique/`, `/boutique/<slug>/` | `/en/shop/…` | Produits (FareHarbor ou demande) |
+| `/equipe/`, `/contact/` | `/en/team/`, `/en/contact/` | Équipe, formulaire de contact |
+| `/sitemap.xml`, `/robots.txt` | | Générés à partir de l'admin |
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+Les anciennes adresses sont redirigées (301) selon les redirections de l'admin ; une adresse
+sans `/` final est redirigée vers la même avec `/`.
+
+## Développement
+
+```bash
+cp .env.example .env   # CMS_URL : admin local (voir admin/README.md dans mjr-admin)
+bun install
+bun run dev
 ```
 
-## Built with
+Test local du rendu serveur, avec un admin lancé sur le port 3000 :
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+```bash
+NITRO_PRESET=node-server bun run build
+PORT=3001 CMS_URL=http://localhost:3000 node .output/server/index.mjs
+```
+
+Sans `NITRO_PRESET`, la configuration Lovable construit pour Cloudflare ; sur Netlify, le
+préréglage Netlify est détecté automatiquement.
+
+Voir `AGENTS.md` pour les règles d'architecture.

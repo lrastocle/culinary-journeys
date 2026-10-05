@@ -10,20 +10,38 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BoutiqueRouteImport } from './routes/boutique'
+import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EquipeRouteImport } from './routes/equipe'
-import { Route as MagazineRouteImport } from './routes/magazine'
-import { Route as QuiSommesNousRouteImport } from './routes/qui-sommes-nous'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BoutiqueIndexRouteImport } from './routes/boutique/index'
+import { Route as BoutiqueSlugRouteImport } from './routes/boutique/$slug'
+import { Route as CategorySlugRouteImport } from './routes/category/$slug'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EnSlugRouteImport } from './routes/en/$slug'
+import { Route as EnContactRouteImport } from './routes/en/contact'
+import { Route as EnTeamRouteImport } from './routes/en/team'
+import { Route as TagSlugRouteImport } from './routes/tag/$slug'
+import { Route as VisitesIndexRouteImport } from './routes/visites/index'
+import { Route as VisitesSlugRouteImport } from './routes/visites/$slug'
+import { Route as EnBlogIndexRouteImport } from './routes/en/blog/index'
+import { Route as EnCategorySlugRouteImport } from './routes/en/category/$slug'
+import { Route as EnShopIndexRouteImport } from './routes/en/shop/index'
+import { Route as EnShopSlugRouteImport } from './routes/en/shop/$slug'
+import { Route as EnTagSlugRouteImport } from './routes/en/tag/$slug'
+import { Route as EnToursIndexRouteImport } from './routes/en/tours/index'
+import { Route as EnToursSlugRouteImport } from './routes/en/tours/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BoutiqueRoute = BoutiqueRouteImport.update({
-  id: '/boutique',
-  path: '/boutique',
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -36,76 +54,292 @@ const EquipeRoute = EquipeRouteImport.update({
   path: '/equipe',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MagazineRoute = MagazineRouteImport.update({
-  id: '/magazine',
-  path: '/magazine',
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const QuiSommesNousRoute = QuiSommesNousRouteImport.update({
-  id: '/qui-sommes-nous',
-  path: '/qui-sommes-nous',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BoutiqueIndexRoute = BoutiqueIndexRouteImport.update({
+  id: '/boutique/',
+  path: '/boutique/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BoutiqueSlugRoute = BoutiqueSlugRouteImport.update({
+  id: '/boutique/$slug',
+  path: '/boutique/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnSlugRoute = EnSlugRouteImport.update({
+  id: '/en/$slug',
+  path: '/en/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnContactRoute = EnContactRouteImport.update({
+  id: '/en/contact',
+  path: '/en/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnTeamRoute = EnTeamRouteImport.update({
+  id: '/en/team',
+  path: '/en/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TagSlugRoute = TagSlugRouteImport.update({
+  id: '/tag/$slug',
+  path: '/tag/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisitesIndexRoute = VisitesIndexRouteImport.update({
+  id: '/visites/',
+  path: '/visites/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisitesSlugRoute = VisitesSlugRouteImport.update({
+  id: '/visites/$slug',
+  path: '/visites/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnBlogIndexRoute = EnBlogIndexRouteImport.update({
+  id: '/en/blog/',
+  path: '/en/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnCategorySlugRoute = EnCategorySlugRouteImport.update({
+  id: '/en/category/$slug',
+  path: '/en/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnShopIndexRoute = EnShopIndexRouteImport.update({
+  id: '/en/shop/',
+  path: '/en/shop/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnShopSlugRoute = EnShopSlugRouteImport.update({
+  id: '/en/shop/$slug',
+  path: '/en/shop/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnTagSlugRoute = EnTagSlugRouteImport.update({
+  id: '/en/tag/$slug',
+  path: '/en/tag/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnToursIndexRoute = EnToursIndexRouteImport.update({
+  id: '/en/tours/',
+  path: '/en/tours/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnToursSlugRoute = EnToursSlugRouteImport.update({
+  id: '/en/tours/$slug',
+  path: '/en/tours/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/boutique': typeof BoutiqueRoute
+  '/$slug': typeof SlugRoute
   '/contact': typeof ContactRoute
   '/equipe': typeof EquipeRoute
-  '/magazine': typeof MagazineRoute
-  '/qui-sommes-nous': typeof QuiSommesNousRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/boutique/$slug': typeof BoutiqueSlugRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/en/$slug': typeof EnSlugRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/team': typeof EnTeamRoute
+  '/tag/$slug': typeof TagSlugRoute
+  '/visites/$slug': typeof VisitesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/boutique/': typeof BoutiqueIndexRoute
+  '/en/': typeof EnIndexRoute
+  '/visites/': typeof VisitesIndexRoute
+  '/en/category/$slug': typeof EnCategorySlugRoute
+  '/en/shop/$slug': typeof EnShopSlugRoute
+  '/en/tag/$slug': typeof EnTagSlugRoute
+  '/en/tours/$slug': typeof EnToursSlugRoute
+  '/en/blog/': typeof EnBlogIndexRoute
+  '/en/shop/': typeof EnShopIndexRoute
+  '/en/tours/': typeof EnToursIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/boutique': typeof BoutiqueRoute
+  '/$slug': typeof SlugRoute
   '/contact': typeof ContactRoute
   '/equipe': typeof EquipeRoute
-  '/magazine': typeof MagazineRoute
-  '/qui-sommes-nous': typeof QuiSommesNousRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/boutique/$slug': typeof BoutiqueSlugRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/en/$slug': typeof EnSlugRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/team': typeof EnTeamRoute
+  '/tag/$slug': typeof TagSlugRoute
+  '/visites/$slug': typeof VisitesSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/boutique': typeof BoutiqueIndexRoute
+  '/en': typeof EnIndexRoute
+  '/visites': typeof VisitesIndexRoute
+  '/en/category/$slug': typeof EnCategorySlugRoute
+  '/en/shop/$slug': typeof EnShopSlugRoute
+  '/en/tag/$slug': typeof EnTagSlugRoute
+  '/en/tours/$slug': typeof EnToursSlugRoute
+  '/en/blog': typeof EnBlogIndexRoute
+  '/en/shop': typeof EnShopIndexRoute
+  '/en/tours': typeof EnToursIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/boutique': typeof BoutiqueRoute
+  '/$slug': typeof SlugRoute
   '/contact': typeof ContactRoute
   '/equipe': typeof EquipeRoute
-  '/magazine': typeof MagazineRoute
-  '/qui-sommes-nous': typeof QuiSommesNousRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/boutique/$slug': typeof BoutiqueSlugRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/en/$slug': typeof EnSlugRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/team': typeof EnTeamRoute
+  '/tag/$slug': typeof TagSlugRoute
+  '/visites/$slug': typeof VisitesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/boutique/': typeof BoutiqueIndexRoute
+  '/en/': typeof EnIndexRoute
+  '/visites/': typeof VisitesIndexRoute
+  '/en/category/$slug': typeof EnCategorySlugRoute
+  '/en/shop/$slug': typeof EnShopSlugRoute
+  '/en/tag/$slug': typeof EnTagSlugRoute
+  '/en/tours/$slug': typeof EnToursSlugRoute
+  '/en/blog/': typeof EnBlogIndexRoute
+  '/en/shop/': typeof EnShopIndexRoute
+  '/en/tours/': typeof EnToursIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/boutique'
+    | '/$slug'
     | '/contact'
     | '/equipe'
-    | '/magazine'
-    | '/qui-sommes-nous'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/boutique/$slug'
+    | '/category/$slug'
+    | '/en/$slug'
+    | '/en/contact'
+    | '/en/team'
+    | '/tag/$slug'
+    | '/visites/$slug'
+    | '/blog/'
+    | '/boutique/'
+    | '/en/'
+    | '/visites/'
+    | '/en/category/$slug'
+    | '/en/shop/$slug'
+    | '/en/tag/$slug'
+    | '/en/tours/$slug'
+    | '/en/blog/'
+    | '/en/shop/'
+    | '/en/tours/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/boutique'
+    | '/$slug'
     | '/contact'
     | '/equipe'
-    | '/magazine'
-    | '/qui-sommes-nous'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/boutique/$slug'
+    | '/category/$slug'
+    | '/en/$slug'
+    | '/en/contact'
+    | '/en/team'
+    | '/tag/$slug'
+    | '/visites/$slug'
+    | '/blog'
+    | '/boutique'
+    | '/en'
+    | '/visites'
+    | '/en/category/$slug'
+    | '/en/shop/$slug'
+    | '/en/tag/$slug'
+    | '/en/tours/$slug'
+    | '/en/blog'
+    | '/en/shop'
+    | '/en/tours'
   id:
     | '__root__'
     | '/'
-    | '/boutique'
+    | '/$slug'
     | '/contact'
     | '/equipe'
-    | '/magazine'
-    | '/qui-sommes-nous'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/boutique/$slug'
+    | '/category/$slug'
+    | '/en/$slug'
+    | '/en/contact'
+    | '/en/team'
+    | '/tag/$slug'
+    | '/visites/$slug'
+    | '/blog/'
+    | '/boutique/'
+    | '/en/'
+    | '/visites/'
+    | '/en/category/$slug'
+    | '/en/shop/$slug'
+    | '/en/tag/$slug'
+    | '/en/tours/$slug'
+    | '/en/blog/'
+    | '/en/shop/'
+    | '/en/tours/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BoutiqueRoute: typeof BoutiqueRoute
+  SlugRoute: typeof SlugRoute
   ContactRoute: typeof ContactRoute
   EquipeRoute: typeof EquipeRoute
-  MagazineRoute: typeof MagazineRoute
-  QuiSommesNousRoute: typeof QuiSommesNousRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BoutiqueSlugRoute: typeof BoutiqueSlugRoute
+  CategorySlugRoute: typeof CategorySlugRoute
+  EnSlugRoute: typeof EnSlugRoute
+  EnContactRoute: typeof EnContactRoute
+  EnTeamRoute: typeof EnTeamRoute
+  TagSlugRoute: typeof TagSlugRoute
+  VisitesSlugRoute: typeof VisitesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  BoutiqueIndexRoute: typeof BoutiqueIndexRoute
+  EnIndexRoute: typeof EnIndexRoute
+  VisitesIndexRoute: typeof VisitesIndexRoute
+  EnCategorySlugRoute: typeof EnCategorySlugRoute
+  EnShopSlugRoute: typeof EnShopSlugRoute
+  EnTagSlugRoute: typeof EnTagSlugRoute
+  EnToursSlugRoute: typeof EnToursSlugRoute
+  EnBlogIndexRoute: typeof EnBlogIndexRoute
+  EnShopIndexRoute: typeof EnShopIndexRoute
+  EnToursIndexRoute: typeof EnToursIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -117,11 +351,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/boutique': {
-      id: '/boutique'
-      path: '/boutique'
-      fullPath: '/boutique'
-      preLoaderRoute: typeof BoutiqueRouteImport
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -138,18 +372,144 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EquipeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/magazine': {
-      id: '/magazine'
-      path: '/magazine'
-      fullPath: '/magazine'
-      preLoaderRoute: typeof MagazineRouteImport
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/qui-sommes-nous': {
-      id: '/qui-sommes-nous'
-      path: '/qui-sommes-nous'
-      fullPath: '/qui-sommes-nous'
-      preLoaderRoute: typeof QuiSommesNousRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boutique/': {
+      id: '/boutique/'
+      path: '/boutique'
+      fullPath: '/boutique/'
+      preLoaderRoute: typeof BoutiqueIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boutique/$slug': {
+      id: '/boutique/$slug'
+      path: '/boutique/$slug'
+      fullPath: '/boutique/$slug'
+      preLoaderRoute: typeof BoutiqueSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/$slug': {
+      id: '/en/$slug'
+      path: '/en/$slug'
+      fullPath: '/en/$slug'
+      preLoaderRoute: typeof EnSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/contact': {
+      id: '/en/contact'
+      path: '/en/contact'
+      fullPath: '/en/contact'
+      preLoaderRoute: typeof EnContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/team': {
+      id: '/en/team'
+      path: '/en/team'
+      fullPath: '/en/team'
+      preLoaderRoute: typeof EnTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tag/$slug': {
+      id: '/tag/$slug'
+      path: '/tag/$slug'
+      fullPath: '/tag/$slug'
+      preLoaderRoute: typeof TagSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/visites/': {
+      id: '/visites/'
+      path: '/visites'
+      fullPath: '/visites/'
+      preLoaderRoute: typeof VisitesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/visites/$slug': {
+      id: '/visites/$slug'
+      path: '/visites/$slug'
+      fullPath: '/visites/$slug'
+      preLoaderRoute: typeof VisitesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/blog/': {
+      id: '/en/blog/'
+      path: '/en/blog'
+      fullPath: '/en/blog/'
+      preLoaderRoute: typeof EnBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/category/$slug': {
+      id: '/en/category/$slug'
+      path: '/en/category/$slug'
+      fullPath: '/en/category/$slug'
+      preLoaderRoute: typeof EnCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/shop/': {
+      id: '/en/shop/'
+      path: '/en/shop'
+      fullPath: '/en/shop/'
+      preLoaderRoute: typeof EnShopIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/shop/$slug': {
+      id: '/en/shop/$slug'
+      path: '/en/shop/$slug'
+      fullPath: '/en/shop/$slug'
+      preLoaderRoute: typeof EnShopSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/tag/$slug': {
+      id: '/en/tag/$slug'
+      path: '/en/tag/$slug'
+      fullPath: '/en/tag/$slug'
+      preLoaderRoute: typeof EnTagSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/tours/': {
+      id: '/en/tours/'
+      path: '/en/tours'
+      fullPath: '/en/tours/'
+      preLoaderRoute: typeof EnToursIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/tours/$slug': {
+      id: '/en/tours/$slug'
+      path: '/en/tours/$slug'
+      fullPath: '/en/tours/$slug'
+      preLoaderRoute: typeof EnToursSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -157,11 +517,29 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BoutiqueRoute: BoutiqueRoute,
+  SlugRoute: SlugRoute,
   ContactRoute: ContactRoute,
   EquipeRoute: EquipeRoute,
-  MagazineRoute: MagazineRoute,
-  QuiSommesNousRoute: QuiSommesNousRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BoutiqueSlugRoute: BoutiqueSlugRoute,
+  CategorySlugRoute: CategorySlugRoute,
+  EnSlugRoute: EnSlugRoute,
+  EnContactRoute: EnContactRoute,
+  EnTeamRoute: EnTeamRoute,
+  TagSlugRoute: TagSlugRoute,
+  VisitesSlugRoute: VisitesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  BoutiqueIndexRoute: BoutiqueIndexRoute,
+  EnIndexRoute: EnIndexRoute,
+  VisitesIndexRoute: VisitesIndexRoute,
+  EnCategorySlugRoute: EnCategorySlugRoute,
+  EnShopSlugRoute: EnShopSlugRoute,
+  EnTagSlugRoute: EnTagSlugRoute,
+  EnToursSlugRoute: EnToursSlugRoute,
+  EnBlogIndexRoute: EnBlogIndexRoute,
+  EnShopIndexRoute: EnShopIndexRoute,
+  EnToursIndexRoute: EnToursIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

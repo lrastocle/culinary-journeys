@@ -13,8 +13,11 @@
 
 ## Architecture rules
 
-- Design system: "Bold Caribbean Pop" — all colors are oklch tokens in src/styles.css (sun, mango, hibiscus, leaf, sea, cream, plum, ink). Components must use these tokens plus the `shadow-pop*` / `btn-pop` utilities; never hardcode hex colors or Tailwind palette classes.
+- Design system: "Bold Caribbean Pop" — all colors are oklch tokens in src/styles.css (sun, mango, hibiscus, leaf, sea, cream, plum, ink). Components must use these tokens plus the `shadow-pop*` / `btn-pop` utilities; never hardcode hex colors or Tailwind palette classes. Colors chosen in the admin map to these tokens in `src/lib/site.ts` (`themes`).
 - Fonts: Archivo (display, `--font-display`) + DM Sans (body, `--font-body`), loaded via Google Fonts <link> in src/routes/__root.tsx.
-- Bilingual FR/EN: all user-facing copy lives in the dictionary in src/lib/i18n.tsx (`useLang()` hook). Never hardcode UI strings in components; add keys to both `fr` and `en`.
-- Language choice persists in localStorage key `tete-dwet-lang`, read in useEffect only (SSR-safe).
-- Routes: / (home), /qui-sommes-nous, /magazine, /boutique, /equipe, /contact. Each route has its own head() metadata; canonical links on leaf routes only.
+- Content comes from the shared admin (Payload, repo `lrastocle/mjr-admin`, folder `admin/`) through its REST API, server-side only: `src/lib/cms/` (server functions in `api.ts`, cached fetch in `fetch.server.ts`). Never hardcode content (tours, products, team, press, contacts, page texts) in components; the dictionary `src/lib/i18n.tsx` holds UI strings only, in both `fr` and `en`.
+- Bilingual FR/EN by URL: French at the root, English under `/en/`. The language comes from the path (`useLang()`), never from local storage. English content only exists when translated in the admin (no French fallback under /en/).
+- All URLs end with `/` (old WordPress URLs are kept). Content URLs are computed in `src/lib/paths.ts` and must match `admin/src/utilities/publicPath.ts`. Old URLs are redirected by the admin's redirects, applied in `src/server.ts`.
+- Routes: one thin file per URL in `src/routes/` (FR) and `src/routes/en/` (EN), each wiring a view from `src/views/` (loader + head + component). Each route sets its own head (title, description, absolute canonical, hreflang) via `src/lib/seo.ts`.
+- Booking: FareHarbor links (opened as an overlay by the FareHarbor script in the root head) when an activity or product has a FareHarbor item, otherwise a request through the contact form (`BookButton`).
+- Environment: see `.env.example` (CMS_URL, CMS_SITE, SITE_URL, CMS_CACHE_SECONDS).

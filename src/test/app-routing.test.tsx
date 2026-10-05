@@ -5,6 +5,22 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { routeTree } from "@/routeTree.gen";
 
+// Les pages lisent l'admin par des fonctions serveur, indisponibles hors du serveur :
+// on simule une admin vide (ce test vérifie seulement que le routeur se monte).
+vi.mock("@/lib/cms/api", () => ({
+  getSite: vi.fn(async () => ({ siteUrl: "", settings: null })),
+  getHome: vi.fn(async () => ({ page: null, blockData: {}, alternates: { fr: "/", en: "/en/" }, activities: [] })),
+  getContent: vi.fn(async () => null),
+  getPostList: vi.fn(async () => null),
+  getActivities: vi.fn(async () => []),
+  getActivity: vi.fn(async () => null),
+  getProducts: vi.fn(async () => []),
+  getProduct: vi.fn(async () => null),
+  getTeam: vi.fn(async () => []),
+  getContactForm: vi.fn(async () => null),
+  submitForm: vi.fn(async () => ({ ok: true })),
+}));
+
 function renderAt(path: string) {
   const queryClient = new QueryClient();
   const router = createRouter({
