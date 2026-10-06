@@ -1,0 +1,9 @@
+# Hébergement Netlify : rendu serveur (TanStack Start via Nitro, préréglage Netlify).
+# Variables à définir dans Netlify : CMS_URL, CMS_SITE, SITE_URL
+# (+ NOINDEX=true tant que le site est sur une adresse provisoire).
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[build.environment]
+  NITRO_PRESET = "netlify"

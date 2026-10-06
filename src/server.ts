@@ -1,6 +1,7 @@
 import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
+import { cmsConfig } from "./lib/cms/fetch.server";
 import { findRedirect } from "./lib/cms/redirects.server";
 import { renderErrorPage } from "./lib/error-page";
 
@@ -72,20 +73,36 @@ async function redirectFor(request: Request): Promise<Response | null> {
   return null;
 }
 
+/** Adresse provisoire (NOINDEX=true) : chaque réponse demande aux moteurs de ne pas indexer. */
+function withNoindex(response: Response): Response {
+  if (!cmsConfig().noindex) return response;
+  const headers = new Headers(response.headers);
+  headers.set("x-robots-tag", "noindex, nofollow");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    try {
-      const redirect = await redirectFor(request);
-      if (redirect) return redirect;
-      const handler = await getServerEntry();
-      const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
-    } catch (error) {
-      console.error(error);
-      return new Response(renderErrorPage(), {
-        status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
-      });
-    }
+    return withNoindex(await handle(request, env, ctx));
   },
 };
+
+async function handle(request: Request, env: unknown, ctx: unknown): Promise<Response> {
+  try {
+    const redirect = await redirectFor(request);
+    if (redirect) return redirect;
+    const handler = await getServerEntry();
+    const response = await handler.fetch(request, env, ctx);
+    return await normalizeCatastrophicSsrResponse(response);
+  } catch (error) {
+    console.error(error);
+    return new Response(renderErrorPage(), {
+      status: 500,
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  }
+}

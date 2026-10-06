@@ -11,6 +11,8 @@ export const cmsConfig = () => ({
   site: process.env["CMS_SITE"] || "tete-dwet",
   siteUrl: (process.env["SITE_URL"] || "https://www.tetedwet.com").replace(/\/$/, ""),
   cacheSeconds: Number(process.env["CMS_CACHE_SECONDS"] ?? 60),
+  // Adresse provisoire (relecture) : le site demande aux moteurs de ne pas l'indexer.
+  noindex: process.env["NOINDEX"] === "true",
 });
 
 type Query = Record<string, unknown>;
